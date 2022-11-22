@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   h4 {
     color: hsl(25, 97%, 53%);
     border: none;
-    border-radius: 16px;
+    border-radius: 1rem;
     background-color: hsla(216, 12%, 54%, 0.205);
     border-radius: 1em;
     padding: 0.4em 1.3em;
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   p {
     color: hsl(216, 12%, 54%);
     text-align: center;
-    font-size: 16px;
+    font-size: 1rem;
   }
 `;
 

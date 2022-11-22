@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 0 5%;
   position: relative;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 `;
 
 const Card = styled.div`
@@ -19,7 +21,7 @@ const Card = styled.div`
   width: auto;
   height: auto;
   border-radius: 20px;
-    
+
   @media only screen and (min-width: 426px) {
     width: 400px;
   }
@@ -39,17 +41,19 @@ function App() {
   };
   return (
     <Wrapper>
-      <Card>
-        {!isSubmitted && (
-          <RatingForm
-            onRate={onRateHandler}
-            onSubmit={onSubmitHandler}
-            maxMark={MAX_MARK}
-            mark={mark}
-          />
-        )}
-        {isSubmitted && <ThankyouState maxMark={MAX_MARK} mark={mark} />}
-      </Card>
+      <main>
+        <Card>
+          {!isSubmitted && (
+            <RatingForm
+              onRate={onRateHandler}
+              onSubmit={onSubmitHandler}
+              maxMark={MAX_MARK}
+              mark={mark}
+            />
+          )}
+          {isSubmitted && <ThankyouState maxMark={MAX_MARK} mark={mark} />}
+        </Card>
+      </main>
     </Wrapper>
   );
 }

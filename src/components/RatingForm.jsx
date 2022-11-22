@@ -24,7 +24,7 @@ const Info = styled.p`
   color: hsl(217, 12%, 63%);
 `;
 
-const RatesWrapper = styled.ul`
+const RatesForm = styled.form`
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -33,21 +33,26 @@ const RatesWrapper = styled.ul`
   margin-bottom: 5px;
 `;
 
-const Rate = styled.li`
-  background: #122535;
+const Input = styled.input`
+  display: none;
+`;
+
+const Label = styled.label`
+  background-color: #383e47;
   color: hsl(217, 12%, 63%);
-  font-size: 16px;
+  font-size: 1rem;
   padding: 20px;
   border-radius: 50%;
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
   text-align: center;
 
   &:hover,
   &.active {
-    background: hsl(25, 97%, 53%);
+    background-color: hsl(25, 97%, 53%);
     color: white;
     cursor: pointer;
+    transition: background-color 500ms;
   }
 `;
 
@@ -59,7 +64,7 @@ const SubmitButton = styled.button`
   border-radius: 50px;
   padding: 1rem 1rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 0.25rem;
 
   &:hover {
     color: hsl(25, 97%, 53%);
@@ -79,21 +84,24 @@ const RatingForm = (props) => {
   const rates = Array(props.maxMark)
     .fill()
     .map((value, index) => {
-      console.log(props.mark === index + 1);
+      const num = index + 1;
+      if (props.mark === num) {
+      }
       return (
-        <Rate
-          key={index + 1}
-          value={index + 1}
-          className={props.mark === index + 1 ? "active" : null}
+        <Label
+          key={num}
+          htmlFor={num}
+          className={props.mark === num ? "active" : null}
         >
-          {index + 1}
-        </Rate>
+          {num}
+          <Input name="ratings" type="radio" id={num} value={num} />
+        </Label>
       );
     });
 
   const rateHandler = (e) => {
-    if (e.target.tagName === "LI") {
-      props.onRate(e.target.value);
+    if (e.target.tagName === "INPUT") {
+      props.onRate(parseInt(e.target.value));
     }
   };
   return (
@@ -104,7 +112,9 @@ const RatingForm = (props) => {
         Please let us know how we did with your support request. All feedback is
         appreciated to help us improve our offering!
       </Info>
-      <RatesWrapper onClick={rateHandler}>{rates}</RatesWrapper>
+      <RatesForm onSubmit={(e) => e.preventDefault()} onClick={rateHandler}>
+        {rates}
+      </RatesForm>
       <SubmitButton disabled={!props.mark} onClick={props.onSubmit}>
         Submit
       </SubmitButton>
