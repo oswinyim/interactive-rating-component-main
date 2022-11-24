@@ -14,6 +14,8 @@ const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
   min-height: -webkit-fill-available;
+  background-color: hsl(216, 12%, 8%);
+
 `;
 
 const Card = styled.div`
